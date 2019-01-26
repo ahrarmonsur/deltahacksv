@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
+const ObjectId = require('mongodb').ObjectID
 
 const DB_URL = "mongodb://admin:dh5acdg@ds145868.mlab.com:45868/deltahacksv"
 const DB_NAME = "deltahacksv"
@@ -27,7 +28,12 @@ app.get('/', (req, res) => {
 // Patients
 
 app.get('/api/patients/:patient_id', (req, res) => {
-    let patient_id = req.params.patient_id
+    let id = req.params.patient_id
+
+    db.collection('patients').findOne({"_id": ObjectId(id)}, (err, result) => {
+        if (err) console.log(err)
+        res.json(result)
+    })
 })
 
 app.post('/api/patients', (req, res) => {
@@ -36,6 +42,7 @@ app.post('/api/patients', (req, res) => {
     patient.dob = new Date(patient.dob)
 
     db.collection('patients').insertOne(patient, (err, result) => {
+        if (err) console.log(err)
         res.json(result.ops)
     })
 })
