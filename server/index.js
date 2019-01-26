@@ -59,7 +59,18 @@ app.get('/api/form/:form_id', (req, res) => {
 
 app.post('/api/patients/:patient_id/form', (req, res) => {
     // Create/Update patients form
-    let collection = db.collections('patients')
+    let collection = db.collection('patients')
+    // pull fields and values from 
+    console.log("collection assigned")
+
+    collection.updateOne({"_id":ObjectId(req.params.patient_id)},
+        {
+            $set: req.body
+        },
+    (err, result) => 
+        {
+            res.send(result)
+        })
 })
 
 // Form Templates
