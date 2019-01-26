@@ -28,12 +28,14 @@ app.get('/api/patients/:patient_id', (req, res) => {
 
 app.post('/api/patients', (req, res) => {
     // Create patients
-    db.collections('patients').insertOne({
+    db.collection('patients').insertOne({
         first_name: "David",
         last_name: "Smith",
         dob: new Date("1999/03/12"),
         email: "email@test.com"
-    }, result => res.send(result))
+    }, (err, result) => {
+        res.json(result.ops)
+    })
 })
 
 app.get('/api/form/:form_id', (req, res) => {
@@ -43,12 +45,6 @@ app.get('/api/form/:form_id', (req, res) => {
 app.post('/api/patients/:patient_id/form', (req, res) => {
     // Create/Update patients form
     let collection = db.collections('patients')
-
-    collection.update({$set
-        {
-
-        }
-    })
 })
 
 // Form Templates
