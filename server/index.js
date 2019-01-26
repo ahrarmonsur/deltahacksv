@@ -49,6 +49,12 @@ app.post('/api/patients', (req, res) => {
 
 app.get('/api/form/:form_id', (req, res) => {
     // Get form data
+    let id = req.params.form_id
+
+    db.collection('forms').findOne({"_id": ObjectId(id)}, (err, result) => {
+        if (err) console.log(err)
+        res.json(result)
+    })
 })
 
 app.post('/api/patients/:patient_id/form', (req, res) => {
@@ -59,13 +65,28 @@ app.post('/api/patients/:patient_id/form', (req, res) => {
 // Form Templates
 
 app.get('/api/template/:template_id', (req, res) => {
+    let id = req.params.template_id
 
+    db.collection('templates').findOne({"_id": ObjectId(id)}, (err, result) => {
+        if (err) console.log(err)
+        res.json(result)
+    })
 })
 
 // Clinics
 
-app.get('/api/clinic/:clinic_id', (res, req) => {
+app.get('/api/clinic/:clinic_id', (req, res) => {
+    let id = req.params.clinic_id
 
+    db.collection('clinics').findOne({"_id": ObjectId(id)}, (err, clinic) => {
+        clinic.patients = clinic.patients.map(patient => ObjectId(patient.oid))
+        
+        db.collection('patients').find({_id: {$in: clinic.patients}}).toArray((err, patients) => {
+            result = clinic
+            result.patients = patients
+            res.json(clinic)
+        })
+    })
 })
 
 app.get('/api/clinic/:clinic_id/patients', (req, res) => {
@@ -74,7 +95,7 @@ app.get('/api/clinic/:clinic_id/patients', (req, res) => {
 })
 
 app.post('/api/clinic/:clinic_id/patients/:patient_id', (req, res) => {
-    // Add patient to client
+    // Add patient to clinic
 })
 
 app.listen(port, () => {
