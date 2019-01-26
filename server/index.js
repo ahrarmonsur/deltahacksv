@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 
 const DB_URL = "mongodb://admin:dh5acdg@ds145868.mlab.com:45868/deltahacksv"
@@ -16,6 +17,9 @@ client.connect((err) => {
 const app = express()
 const port = 3000
 
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
 app.get('/', (req, res) => {
     res.send("Hello world")
 })
@@ -28,12 +32,10 @@ app.get('/api/patients/:patient_id', (req, res) => {
 
 app.post('/api/patients', (req, res) => {
     // Create patients
-    db.collection('patients').insertOne({
-        first_name: "David",
-        last_name: "Smith",
-        dob: new Date("1999/03/12"),
-        email: "email@test.com"
-    }, (err, result) => {
+    let patient = req.body
+    patient.dob = new Date(patient.dob)
+
+    db.collection('patients').insertOne(patient, (err, result) => {
         res.json(result.ops)
     })
 })
