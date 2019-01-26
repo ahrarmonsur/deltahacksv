@@ -78,7 +78,7 @@ app.post('/api/patients/:patient_id/form', (req, res) => {
 app.get('/api/template/:template_id', (req, res) => {
     let id = req.params.template_id
 
-    db.collection('templates').findOne({"_id": ObjectId(id)}, (err, result) => {
+    db.collection('templates').findOne({"_id": id == "default" ? id : ObjectId(id)}, (err, result) => {
         if (err) console.log(err)
         res.json(result)
     })
@@ -100,13 +100,18 @@ app.get('/api/clinic/:clinic_id', (req, res) => {
     })
 })
 
-app.get('/api/clinic/:clinic_id/patients', (req, res) => {
-    let id = req.params.id
-    // Return list of patients
-})
-
-app.post('/api/clinic/:clinic_id/patients/:patient_id', (req, res) => {
+app.post('/api/clinic/:clinic_id/patient/:patient_id', (req, res) => {
     // Add patient to clinic
+    let clinic_id = req.params.clinic_id
+    let patient_id = req.params.patient_id
+    
+    db.collection('clinics').updateOne({"_id": ObjectId(clinic_id)}, {
+        $addToSet: {'patients': ObjectId(patient_id)}
+    }, (err, result) => {
+        console.log(result)
+        if (err) console.log(err)
+        else res.send("Success!")
+    })
 })
 
 app.listen(port, () => {
