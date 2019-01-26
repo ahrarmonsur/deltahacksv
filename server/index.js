@@ -114,6 +114,16 @@ app.post('/api/clinic/:clinic_id/patient/:patient_id', (req, res) => {
     })
 })
 
+app.post('/*', (req, res) => {
+    // Invalid post request
+    res.send("Invalid post request made.")
+})
+
+app.get('/*', (req, res) => {
+    // Invalid get request
+    res.send("Invalid get request made.")
+})
+
 app.listen(port, () => {
     console.log(`Server listening on ${port}`)
 })
