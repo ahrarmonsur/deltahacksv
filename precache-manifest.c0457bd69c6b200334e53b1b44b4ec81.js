@@ -20,19 +20,19 @@ self.__precacheManifest = [
     "url": "/deltahacksv/static/js/runtime~main.90cd9ba4.js"
   },
   {
-    "revision": "258355e278a067f00ab9",
-    "url": "/deltahacksv/static/js/main.258355e2.chunk.js"
+    "revision": "99f779ea5afeea1550fb",
+    "url": "/deltahacksv/static/js/main.99f779ea.chunk.js"
   },
   {
     "revision": "0e1dcd04978876fcb515",
     "url": "/deltahacksv/static/js/1.0e1dcd04.chunk.js"
   },
   {
-    "revision": "258355e278a067f00ab9",
+    "revision": "99f779ea5afeea1550fb",
     "url": "/deltahacksv/static/css/main.8205022d.chunk.css"
   },
   {
-    "revision": "84f68807d0dace4a782a6eee066fc682",
+    "revision": "35797629ab633e336e3b22e90c0100ce",
     "url": "/deltahacksv/index.html"
   }
 ];

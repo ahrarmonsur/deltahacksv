@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/deltahacksv/precache-manifest.23e3d988a17b20f9ec1d2d6a872c0f11.js"
+  "/deltahacksv/precache-manifest.c0457bd69c6b200334e53b1b44b4ec81.js"
 );
 
 workbox.clientsClaim();
