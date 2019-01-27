@@ -16,8 +16,8 @@ class Login extends Component {
 					</p>
 				</div>
 				<div className="buttons">
-					<Button color="primary" variant="contained" size="large"> Sign up with Google</Button>
-					<Button color="primary" variant="contained" size="large"> Sign up with Email</Button>
+					<Button color="primary" variant="contained" size="large" href="/userVerification"> Sign up with Google</Button>
+					<Button color="primary" variant="contained" size="large" href="/userVerification"> Sign up with Email</Button>
 					<p>or log in</p>
 				</div>
 			</div>

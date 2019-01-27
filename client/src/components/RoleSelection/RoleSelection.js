@@ -11,7 +11,7 @@ class RoleSelection extends Component {
 					MediForm
 				</h2>
 				<div className="buttons">
-					<Button color="primary" variant="contained" size="large">Patient Portal</Button>
+					<Button color="primary" variant="contained" size="large" href="/login">Patient Portal</Button>
 					<Button color="primary" variant="contained" size="large">Clinician Portal</Button>
 				</div>
 			</div>

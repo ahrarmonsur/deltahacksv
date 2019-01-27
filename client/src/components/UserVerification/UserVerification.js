@@ -9,7 +9,7 @@ class UserVerification extends Component {
 	render() {
 		return (
 			<div className="userVerification">
-				<BackButton/>
+				<BackButton href="/login"/>
 				<div className="info">
 					<h2>
 						Is this information correct?

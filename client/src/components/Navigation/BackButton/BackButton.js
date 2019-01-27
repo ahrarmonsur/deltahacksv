@@ -7,7 +7,7 @@ class BackButton extends Component {
 	render() {
 		return (
 			<div className="back">
-				<Button>
+				<Button href={this.props.href}>
 					<ArrowBackIcon/>
 					Back
 				</Button>
