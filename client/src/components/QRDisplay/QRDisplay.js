@@ -37,7 +37,7 @@ export default class QRDisplay extends Component {
                         <img src={this.state.image} />
                     </Card>
                 )}
-                <footer>
+                <div className="buttons">
                     <Button
                         href={`/profile/${this.props.match.params.patientID}`}
                         color="primary"
@@ -47,7 +47,7 @@ export default class QRDisplay extends Component {
                     >
                         Finish
                     </Button>
-                </footer>
+                </div>
             </div>
         );
     }

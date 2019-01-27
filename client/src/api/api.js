@@ -1,12 +1,13 @@
 import axios from "axios";
 import clean from "../func";
 
-function createPatient(patientBasicInfo) {
-    axios
-        .post("/api/patients", patientBasicInfo)
-        .then(res =>
-            console.log(`${patientBasicInfo["first_name"]} added to db.`)
-        );
+function createPatient(patientBasicInfo, cb) {
+    let data = {
+        first_name: patientBasicInfo.name.split(" ")[0],
+        last_name: patientBasicInfo.name.split(" ")[1],
+        email: patientBasicInfo.email
+    };
+    axios.post("/api/patients", data).then(res => cb(res.data[0]));
 }
 
 function getPatient(patientID, cb) {
@@ -19,6 +20,9 @@ function getForm(formID, cb) {
 
 function submitPatientForm(patientID, patientData) {
     clean(patientData);
+    if (patientData.medication) {
+        patientData.medications.push(patientData.medication);
+    }
     axios
         .post(`/api/patients/${patientID}/form`, patientData)
         .then(res => console.log("ResAction called"));

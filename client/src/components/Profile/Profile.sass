@@ -2,10 +2,42 @@
 
 .profile
 	@extend	.page
+	display: block
 
 	.banner-btn
 		flex-direction: column
 		color: white
+		padding: 4em 3em
 
 		span
 			display: block
+			color: white
+			margin: 0
+			font-weight: 500
+
+		h6
+			color: white
+			font-size: 1.1em
+
+	.two-col-input
+		justify-content: space-between
+		align-items: baseline
+		display: flex
+	
+	.two-col-input > div:first-child
+        margin-right: 0.5em
+	
+	.two-col-input > div:nth-child(2)
+        margin-left: 0.5em
+
+	.checkin-hdr 
+		margin-bottom: 1em
+	.checkin
+		border: 1px solid #51B4F2
+		padding: 0.75em
+		border-radius: 4px
+		margin-bottom: 1em
+		line-height: 1.5em
+
+	.checkin-sub
+		color: #888

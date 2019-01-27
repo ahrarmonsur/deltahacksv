@@ -31,7 +31,7 @@ class App extends Component {
                             component={QRDisplay}
                         />
                         <Route path="/qrscan" component={QRScan} />
-                        <Route path="/form" component={Form} />
+                        <Route path="/form/:patientID" component={Form} />
                         <Route path="/profile/:patientID" component={Profile} />
                         <Route
                             path="/patient/:patientID"

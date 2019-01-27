@@ -16,8 +16,8 @@ import {
     dense
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import formImg from '../../assets/illustration-2.png';
-import formImg2 from '../../assets/illustration-3.png';
+import formImg from "../../assets/illustration-2.png";
+import formImg2 from "../../assets/illustration-3.png";
 
 import "./Form.sass";
 import BackButton from "../Navigation/BackButton/BackButton";
@@ -78,7 +78,7 @@ export default class Form extends Component {
             step: prevState.step - 1,
             prevStep: prevState.step
         }));
-	    console.log(this.state);
+        console.log(this.state);
     };
 
     handleAddPhone = () => {
@@ -131,7 +131,7 @@ export default class Form extends Component {
             }
         }));
         this.handleNextStep();
-        submitPatientForm("5c4ccb40d0dc8f0317d60eb0", this.state.data);
+        submitPatientForm(this.props.match.params.patientID, this.state.data);
     };
 
     gotoStep = step => {
@@ -180,27 +180,24 @@ export default class Form extends Component {
 
                 {/* *** STEP 1 *** */}
                 {this.state.step == 1 && (
-					<div className="info">
-						<img src={formImg} alt="Image of health passport"/>
-						<Typography variant="subheading">
-							STEP 1
-						</Typography>
-						<h2>Let's get your health passport set up.</h2>
-						<p>
-							Fill out your information once, and you'll only have
-							to scan your QR code the next time you visit the
-							doctor!
-						</p>
-						<p>We'll start with information about you.</p>
-					</div>
+                    <div className="info">
+                        <img src={formImg} alt="Image of health passport" />
+                        <Typography variant="subheading">STEP 1</Typography>
+                        <h2>Let's get your health passport set up.</h2>
+                        <p>
+                            Fill out your information once, and you'll only have
+                            to scan your QR code the next time you visit the
+                            doctor!
+                        </p>
+                        <p>We'll start with information about you.</p>
+                    </div>
                 )}
 
                 {/* *** STEP 2 *** */}
                 {this.state.step == 2 && (
                     <>
                         <div className="info">
-                            <h1>What's your gender and date of birth?
-                            </h1>
+                            <h1>What's your gender and date of birth?</h1>
                         </div>
                         <form id="form_1">
                             <div className="formRow">
@@ -226,10 +223,16 @@ export default class Form extends Component {
                                         displayEmpty
                                         name="gender"
                                     >
-                                        <MenuItem value="">Choose one...</MenuItem>
+                                        <MenuItem value="">
+                                            Choose one...
+                                        </MenuItem>
                                         <MenuItem value={"male"}>Male</MenuItem>
-                                        <MenuItem value={"female"}>Female</MenuItem>
-                                        <MenuItem value={"other"}>Other</MenuItem>
+                                        <MenuItem value={"female"}>
+                                            Female
+                                        </MenuItem>
+                                        <MenuItem value={"other"}>
+                                            Other
+                                        </MenuItem>
                                     </Select>
                                     {/* <FormHelperText>Label + placeholder</FormHelperText> */}
                                 </FormControl>
@@ -267,7 +270,7 @@ export default class Form extends Component {
                                     color="default"
                                     onClick={this.handleAddPhone}
                                 >
-									+ Add Another
+                                    + Add Another
                                 </Button>
                             )}
                         </form>
@@ -415,21 +418,21 @@ export default class Form extends Component {
 
                 {/* *** STEP 6 *** */}
                 {this.state.step == 6 && (
-					<div className="info">
-						<img src={formImg2} alt="Image of prescriptions"/>
-						<Typography variant="subheading" gutterBottom>
-							STEP 2
-						</Typography>
-						<h2>Your medical information</h2>
-						<p>
-							Doctors need background information in order to make
-							informed medical decisions for you.
-						</p>
-						<p>
-							Here are a few questions about you and your medical
-							history.
-						</p>
-					</div>
+                    <div className="info">
+                        <img src={formImg2} alt="Image of prescriptions" />
+                        <Typography variant="subheading" gutterBottom>
+                            STEP 2
+                        </Typography>
+                        <h2>Your medical information</h2>
+                        <p>
+                            Doctors need background information in order to make
+                            informed medical decisions for you.
+                        </p>
+                        <p>
+                            Here are a few questions about you and your medical
+                            history.
+                        </p>
+                    </div>
                 )}
 
                 {/* *** STEP 7 *** */}
@@ -439,25 +442,28 @@ export default class Form extends Component {
                             className="info"
                             style={{ justifyContent: "center" }}
                         >
-                            <h2>Are you currently taking any prescription medication?</h2>
+                            <h2>
+                                Are you currently taking any prescription
+                                medication?
+                            </h2>
                         </div>
-	                    <div className="buttons footerButtons">
-		                    <Button
-			                    color="primary"
-			                    variant="contained"
-			                    size="large"
-			                    onClick={() => this.gotoStep(8)}
-		                    >
-			                    Yes
-		                    </Button>
-		                    <Button
-			                    color="primary"
-			                    variant="contained"
-			                    size="large"
-			                    onClick={() => this.gotoStep(9)}
-		                    >
-			                    No
-		                    </Button>
+                        <div className="buttons footerButtons">
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                size="large"
+                                onClick={() => this.gotoStep(8)}
+                            >
+                                Yes
+                            </Button>
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                size="large"
+                                onClick={() => this.gotoStep(9)}
+                            >
+                                No
+                            </Button>
                         </div>
                     </>
                 )}
@@ -543,69 +549,69 @@ export default class Form extends Component {
                                 etc.
                             </p>
                         </div>
-	                    <div className="buttons footerButtons">
-		                    <Button
-			                    color="primary"
-			                    variant="contained"
-			                    size="large"
-			                    onClick={() => this.handleSeriousDecision(true)}
-		                    >
-			                    Yes
-		                    </Button>
-		                    <Button
-			                    color="primary"
-			                    variant="contained"
-			                    size="large"
-			                    onClick={() => this.handleSeriousDecision(false)}
-		                    >
-			                    No
-		                    </Button>
+                        <div className="buttons footerButtons">
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                size="large"
+                                onClick={() => this.handleSeriousDecision(true)}
+                            >
+                                Yes
+                            </Button>
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                size="large"
+                                onClick={() =>
+                                    this.handleSeriousDecision(false)
+                                }
+                            >
+                                No
+                            </Button>
                         </div>
                     </>
                 )}
 
                 {/* *** STEP 10 *** */}
                 {this.state.step == 10 && (
-					<div className="info"
-					     style={{ justifyContent: "center" }}
-                    >
-						<h2>
-							Your health passport is complete!
-						</h2>
-						<p>
-							Thank you for filling out all of the entries. You
-							are now ready to check into clinics with a quick
-							scan!
-						</p>
-					</div>
+                    <div className="info" style={{ justifyContent: "center" }}>
+                        <h2>Your health passport is complete!</h2>
+                        <p>
+                            Thank you for filling out all of the entries. You
+                            are now ready to check into clinics with a quick
+                            scan!
+                        </p>
+                    </div>
                 )}
 
                 <div className="buttons footerButtons">
-	                {this.state.step !== 7 &&
-	                this.state.step !== 9 &&
-	                this.state.step !== 10 && (
-		                <Button
-			                color="primary"
-			                variant="contained"
-			                size="large"
-			                onClick={this.handleNextStep}
-		                >
-			                {this.state.step == 1 || this.state.step == 6
-				                ? "Continue"
-				                : "Next"}
-		                </Button>
-	                )}
-	                {this.state.step === 10 && (
-		                <Button
-			                color="primary"
-			                variant="contained"
-			                size="large"
+                    {this.state.step !== 7 &&
+                        this.state.step !== 9 &&
+                        this.state.step !== 10 && (
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                size="large"
+                                onClick={this.handleNextStep}
+                            >
+                                {this.state.step == 1 || this.state.step == 6
+                                    ? "Continue"
+                                    : "Next"}
+                            </Button>
+                        )}
+                    {this.state.step === 10 && (
+                        <Button
+                            color="primary"
+                            variant="contained"
+                            size="large"
+                            href={`/profile/${
+                                this.props.match.params.patientID
+                            }`}
                             // onClick={this.handleNextStep}
-		                >
-			                View my profile
-		                </Button>
-	                )}
-
+                        >
+                            View my profile
+                        </Button>
+                    )}
                 </div>
             </div>
         );

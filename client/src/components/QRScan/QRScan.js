@@ -34,9 +34,9 @@ export default class QRScanner extends Component {
                         facingMode={"environment"}
                     />
                 </Card>
-                <footer>
+                <div className="buttons footerButtons">
                     <Button
-                        href={`/profile/${this.props.match.params.patientID}`}
+                        href={`/`}
                         color="primary"
                         variant="contained"
                         size="large"
@@ -44,7 +44,7 @@ export default class QRScanner extends Component {
                     >
                         Cancel
                     </Button>
-                </footer>
+                </div>
             </div>
         );
     }
