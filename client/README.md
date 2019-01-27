@@ -1,68 +1,31 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mediform
+========
 
-## Available Scripts
+### Product Outline
+An application platform which allows patient to digitize important and frequently-used health information and share it effortlessly with their healthcare provider. Through this product, we aim to eliminate mistakes during intake, reduce inefficiencies in the caregiver's process, and deliver faster healthcare to those in need.
 
-In the project directory, you can run:
+### The Need
+- Enables patients to keep one source of health information up-to-date
+- Prevents incomplete information due to patients forgetting crucial information or not having them on-hand
+- Reduces mistakes that occur during manual transcription of intake forms
+- Improved workflow efficiency for the healthcare team
+- Prevents the need to repeat same information to multiple caregivers
 
-### `npm start`
+### Technical Scope
+- Responsive PWA
+- Camera control and QR code detection
+- Intake form workflow
+- Ability to customize pre-filled forms to include more questions by clinicians
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Technical Stack
+- Database: MongoDB (mLab)
+- Webserver: Node + Express
+- Frontend: HTML, CSS, JS (React)
+- Prototyping: Figma 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Next Steps
+- Integrate functionality to scan 2D barcodes on health cards
+- Integrate with industry standard EMR systems
+- Ensure the information is kept secure in adherence to Personal Health Information Protection Act
+- Implement a system where EMS personnel can be granted immediate access to information without security challenge
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
