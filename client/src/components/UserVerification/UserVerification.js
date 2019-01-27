@@ -1,12 +1,10 @@
-import React, {Component} from 'react';
-import Button from '@material-ui/core/Button';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import TextField from '@material-ui/core/TextField';
-import BackButton from '../Navigation/BackButton/BackButton';
-import './UserVerification.sass';
+import React, { Component } from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import BackButton from "../Navigation/BackButton/BackButton";
+import "./UserVerification.sass";
 
 class UserVerification extends Component {
-
 	state = {
 		name: "Jimothy Doe",
 		email: "jimothydoe@gmail.com"
@@ -33,7 +31,6 @@ class UserVerification extends Component {
 						onChange={this.handleNameChange}
 						margin="normal"
 						fullWidth={true}
-						readOnly={true}
 					/>
 					<TextField
 						id="email"
@@ -44,8 +41,8 @@ class UserVerification extends Component {
 						fullWidth={true}
 					/>
 				</div>
-				<div className="buttons">
-					<Button color="primary" variant="contained" size="large">Confirm</Button>
+				<div className="buttons footerButtons">
+					<Button color="primary" variant="contained" size="large" href="/form">Confirm</Button>
 				</div>
 			</div>
 		);

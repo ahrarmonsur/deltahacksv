@@ -16,7 +16,7 @@ class Login extends Component {
 						Skip the form at the doctor’s office, and scan your QR code in seconds.
 					</p>
 				</div>
-				<div className="buttons">
+				<div className="buttons footerButtons">
 					<Button color="primary" variant="contained" size="large" href="/userVerification"> Sign up with Google</Button>
 					<Button color="primary" variant="contained" size="large" href="/userVerification"> Sign up with Email</Button>
 					<p>or log in</p>
