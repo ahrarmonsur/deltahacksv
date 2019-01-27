@@ -5,8 +5,12 @@
   "dependencies": {
     "axios": "^0.18.0",
     "qrcode": "^1.3.3",
+    "@material-ui/core": "^3.9.1",
+    "@material-ui/icons": "^3.0.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-qr-reader": "^2.1.2",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.3"
   },
   "scripts": {
@@ -23,5 +27,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "node-sass": "^4.11.0"
+  }
 }
