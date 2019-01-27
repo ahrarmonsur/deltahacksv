@@ -6,21 +6,27 @@ import {
     MenuItem,
     Input,
     TextField,
-    Button
+    Button,
+    Typography
 } from "@material-ui/core";
 
 import "./Form.sass";
+import BackButton from "../Navigation/BackButton/BackButton";
 
 export default class Form extends Component {
     state = {
-        step: 2,
+        step: 1,
         data: {
             gender: "",
             dob: "",
             phone_1: "",
             phone_2: "",
             phone_3: "",
-            card_num: ""
+            card_num: "",
+            province: "",
+            address: "",
+            postal: "",
+            city: ""
         },
         phone_numbers: 1
     };
@@ -48,6 +54,12 @@ export default class Form extends Component {
     handleNextStep = () => {
         this.setState(prevState => ({
             step: prevState.step + 1
+        }));
+    };
+
+    handlePreviousStep = () => {
+        this.setState(prevState => ({
+            step: prevState.step - 1
         }));
     };
 
@@ -90,16 +102,40 @@ export default class Form extends Component {
     render() {
         return (
             <div className="form">
-                <div className="btn-back">&#x2039; Back</div>
+                {this.state.step === 1 && <BackButton href="/" />}
+                {this.state.step !== 1 && (
+                    <BackButton onClick={this.handlePreviousStep} />
+                )}
+
                 {/* *** STEP 1 *** */}
                 {this.state.step == 1 && (
                     <>
-                        <header>
+                        <Typography variant="subheading" gutterBottom>
+                            STEP 1
+                        </Typography>
+                        <div className="info">
+                            <h1>
+                                Let's get your health <br /> passport set up.
+                            </h1>
+                        </div>
+                        <p>
+                            Fill out your information once, and you'll only have
+                            to scan your QR code the next time you visit the
+                            doctor!
+                        </p>
+                        <p>We'll start with information about you.</p>
+                    </>
+                )}
+
+                {/* *** STEP 2 *** */}
+                {this.state.step == 2 && (
+                    <>
+                        <div className="info">
                             <h1>
                                 What's your gender <br />
                                 and date of birth?
                             </h1>
-                        </header>
+                        </div>
                         <form id="form_1">
                             <div className="formRow">
                                 <FormControl
@@ -158,15 +194,15 @@ export default class Form extends Component {
                     </>
                 )}
 
-                {/* *** STEP 2 *** */}
-                {this.state.step == 2 && (
+                {/* *** STEP 3 *** */}
+                {this.state.step == 3 && (
                     <>
-                        <header>
+                        <div className="info">
                             <h1>
                                 What's your primary <br />
                                 phone number?
                             </h1>
-                        </header>
+                        </div>
                         <form id="form_2">
                             {this.createPhoneInputs()}
                             {this.state.phone_numbers < 3 && (
@@ -181,14 +217,14 @@ export default class Form extends Component {
                     </>
                 )}
 
-                {/* *** STEP 3 *** */}
-                {this.state.step == 3 && (
+                {/* *** STEP 4 *** */}
+                {this.state.step == 4 && (
                     <>
-                        <header>
+                        <div className="info">
                             <h1>
                                 What is your health card <br /> number?
                             </h1>
-                        </header>
+                        </div>
                         <form id="form_2">
                             <div>
                                 <TextField
@@ -213,19 +249,19 @@ export default class Form extends Component {
                     </>
                 )}
 
-                {/* *** STEP 4 *** */}
-                {this.state.step == 4 && (
+                {/* *** STEP 5 *** */}
+                {this.state.step == 5 && (
                     <>
-                        <header>
+                        <div className="info">
                             <h1>
                                 Please enter your <br /> address.
                             </h1>
-                        </header>
+                        </div>
                         <form id="form_2">
                             <div>
                                 <TextField
                                     fullWidth={true}
-                                    id="standard-number"
+                                    id="address"
                                     label="Address"
                                     value={this.state.data.address}
                                     onChange={this.handleChangeInput("address")}
@@ -239,9 +275,9 @@ export default class Form extends Component {
                                 />
                                 <TextField
                                     fullWidth={true}
-                                    id="standard-number"
+                                    id="city"
                                     label="City"
-                                    value={this.state.data.address}
+                                    value={this.state.data.city}
                                     onChange={this.handleChangeInput("city")}
                                     type="text"
                                     name={`city`}
@@ -251,29 +287,30 @@ export default class Form extends Component {
                                     }}
                                     margin="normal"
                                 />
-                                <FormControl
-                                    className="formControl"
-                                    fullWidth={true}
-                                >
-                                    <InputLabel
-                                        shrink
-                                        htmlFor="age-label-placeholder"
+
+                                <div className="two-col-input">
+                                    <FormControl
+                                        className="formControl"
+                                        fullWidth={true}
                                     >
-                                        Province
-                                    </InputLabel>
-                                    <Select
-                                        value={this.state.data.gender}
-                                        onChange={this.handleChangeSelect}
-                                        input={
-                                            <Input
-                                                name="gender"
-                                                id="age-label-placeholder"
-                                            />
-                                        }
-                                        displayEmpty
-                                        name="gender"
-                                    >
-                                        <>
+                                        <InputLabel
+                                            shrink
+                                            htmlFor="age-label-placeholder"
+                                        >
+                                            Province
+                                        </InputLabel>
+                                        <Select
+                                            value={this.state.data.province}
+                                            onChange={this.handleChangeSelect}
+                                            input={
+                                                <Input
+                                                    name="province"
+                                                    id="age-label-placeholder"
+                                                />
+                                            }
+                                            displayEmpty
+                                            name="province"
+                                        >
                                             <MenuItem value="" />
                                             <MenuItem value={"ab"}>
                                                 Alberta
@@ -311,11 +348,59 @@ export default class Form extends Component {
                                             <MenuItem value={"yt"}>
                                                 Yukon
                                             </MenuItem>
-                                        </>
-                                    </Select>
-                                    {/* <FormHelperText>Label + placeholder</FormHelperText> */}
-                                </FormControl>
+                                        </Select>
+                                        {/* <FormHelperText>Label + placeholder</FormHelperText> */}
+                                    </FormControl>
+                                    <TextField
+                                        fullWidth={true}
+                                        id="postal"
+                                        label="Postal Code"
+                                        value={this.state.data.postal}
+                                        onChange={this.handleChangeInput(
+                                            "postal"
+                                        )}
+                                        type="text"
+                                        name={`postal`}
+                                        // className={classes.textField}
+                                        InputLabelProps={{
+                                            shrink: true
+                                        }}
+                                        margin="normal"
+                                    />
+                                </div>
                             </div>
+                        </form>
+                    </>
+                )}
+
+                {/* *** STEP 6 *** */}
+                {this.state.step == 6 && (
+                    <>
+                        <div className="info">
+                            <h1>
+                                What is your health card <br /> number?
+                            </h1>
+                        </div>
+                        <form id="form_2">
+                            <div>
+                                <TextField
+                                    fullWidth={true}
+                                    id="standard-number"
+                                    label="Health Card Number"
+                                    value={this.state.data.card_num}
+                                    onChange={this.handleChangeInput(
+                                        "card_num"
+                                    )}
+                                    type="text"
+                                    name={`card_num`}
+                                    // className={classes.textField}
+                                    InputLabelProps={{
+                                        shrink: true
+                                    }}
+                                    margin="normal"
+                                />
+                            </div>
+                            {/* <Button color="default">Need help?</Button> */}
                         </form>
                     </>
                 )}
@@ -327,7 +412,9 @@ export default class Form extends Component {
                         size="large"
                         onClick={this.handleNextStep}
                     >
-                        Next
+                        {this.state.step == 1 || this.state.step == 6
+                            ? "Continue"
+                            : "Next"}
                     </Button>
                 </footer>
             </div>

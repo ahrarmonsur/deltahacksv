@@ -1,9 +1,9 @@
 .form
+    @extend .page
     display: flex
     flex-direction: column
-    min-width: 360px
 
-    header
+    .info
         display: flex
         flex-direction: column
         flex: 1 1
@@ -37,3 +37,13 @@
         margin-top: -2em
         text-decoration: none
         color: black
+
+    .two-col-input 
+        display: flex
+        align-items: baseline
+
+    .two-col-input > div:first-child
+        margin-right: 0.5em
+    
+    .two-col-input > div:nth-child(2)
+        margin-left: 0.5em
