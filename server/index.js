@@ -59,18 +59,36 @@ app.get('/api/form/:form_id', (req, res) => {
 
 app.post('/api/patients/:patient_id/form', (req, res) => {
     // Create/Update patients form
-    let collection = db.collection('patients')
-    // pull fields and values from 
-    console.log("collection assigned")
 
-    collection.updateOne({"_id":ObjectId(req.params.patient_id)},
-        {
-            $set: req.body
-        },
-    (err, result) => 
-        {
-            res.send(result)
-        })
+    return_url = `http://localhost:3000/api/patients/${req.params.patient_id}`
+
+    payload = { ...req.body, created: new Date() }
+
+    db.collection('patients').findOne({"_id": ObjectId(req.params.patient_id)}, (err, patient) => {
+        console.log(patient.form)
+        if (patient.form) {
+            db.collection('forms').updateOne({"_id":ObjectId(patient.form)},
+            {
+                $set: payload
+            },
+        (err, result) => 
+            {
+                res.send(return_url)
+            })
+        } else {
+            db.collection('forms').insertOne(payload, (err, form_result) => {
+                db.collection('patients').updateOne({"_id": ObjectId(req.params.patient_id)}, {
+                    $set: {
+                        form: form_result.ops[0]._id
+                    }
+                }, (err, patient_result) => {
+                    res.send(return_url)
+                })
+            })
+        }
+
+    })
+    
 })
 
 // Form Templates
