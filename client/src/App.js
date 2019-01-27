@@ -4,6 +4,7 @@ import logo from "./logo.svg";
 
 import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
+import Form from "./components/Form/Form";
 import "./App.sass";
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
                         {/* <Route exact path="/" /> */}
                         <Route path="/login" component={Login} />
 
-                        {/* <Route path="/form/1" component={Form_1} /> */}
+                        <Route path="/form" component={Form} />
                     </div>
                 </div>
             </BrowserRouter>
