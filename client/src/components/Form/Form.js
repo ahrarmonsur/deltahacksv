@@ -20,7 +20,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import "./Form.sass";
 import BackButton from "../Navigation/BackButton/BackButton";
 
-import clean from "../../func";
+import { submitPatientForm } from "../../api/api";
 
 export default class Form extends Component {
     state = {
@@ -128,13 +128,7 @@ export default class Form extends Component {
             }
         }));
         this.handleNextStep();
-        this.handleSubmit();
-    };
-
-    handleSubmit = () => {
-        let data = Object.create(this.state.data);
-        clean(data);
-        console.log(data);
+        submitPatientForm("5c4ccb40d0dc8f0317d60eb0", this.state.data);
     };
 
     gotoStep = step => {
