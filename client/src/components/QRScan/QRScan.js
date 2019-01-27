@@ -14,7 +14,7 @@ export default class QRScanner extends Component {
     }
     handleScan(data) {
         if (data) {
-            this.props.history.push(`/profile/${data}`);
+            this.props.history.push(`/patient/${data}`);
         }
     }
     handleError(err) {
