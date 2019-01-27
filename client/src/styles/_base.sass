@@ -1,13 +1,37 @@
 #App
 	display: flex
 	flex-direction: column
-	height: 100vh
+	height: 95vh
+
+	font-family: 'Source Sans Pro', sans-serif
+	font-size: 16px
+	font-weight: 400
+
+	h2
+		font-size: 30px
+		font-weight: 700
+
 
 .buttons
 	button, a
 		width: 100%
 		margin-top: 20px
+		background-color: #51B4F2
+		text-transform: inherit
+		font-size: 15px
+		font-weight: 400
+		height: 58px
 
+		&:hover
+			background-color: darken(#51B4F2, 10%)
+
+
+.footerButtons
+	display: flex
+	flex-direction: column
+	align-self: flex-end
+	width: 100%
+	text-align: center
 
 #content
 	padding: 0 30px 30px 30px
