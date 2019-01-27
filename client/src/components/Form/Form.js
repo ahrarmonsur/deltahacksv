@@ -20,6 +20,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import "./Form.sass";
 import BackButton from "../Navigation/BackButton/BackButton";
 
+import clean from "../../func";
+
 export default class Form extends Component {
     state = {
         prevStep: 1,
@@ -126,6 +128,13 @@ export default class Form extends Component {
             }
         }));
         this.handleNextStep();
+        this.handleSubmit();
+    };
+
+    handleSubmit = () => {
+        let data = Object.create(this.state.data);
+        clean(data);
+        console.log(data);
     };
 
     gotoStep = step => {
