@@ -16,7 +16,7 @@ import "./App.sass";
 class App extends Component {
     render() {
         return (
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <div id="App">
                     <Header title="MediForm" />
                     <div id="content">
