@@ -1,20 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component } from "react";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import logo from "./logo.svg";
 
-import Header from './components/Header/Header';
-import Login from './components/Login/Login';
-import './App.sass';
+import Header from "./components/Header/Header";
+import Login from "./components/Login/Login";
+import "./App.sass";
 
 class App extends Component {
     render() {
-		return (
-			<div id="App">
-				<Header title="MediForm"/>
-				<div id="content">
-					<Login/>
-				</div>
-			</div>
-		);
+        return (
+            <BrowserRouter>
+                <div id="App">
+                    <Header title="MediForm" />
+                    <div id="content">
+                        {/* <Route exact path="/" /> */}
+                        <Route path="/login" component={Login} />
+
+                        {/* <Route path="/form/1" component={Form_1} /> */}
+                    </div>
+                </div>
+            </BrowserRouter>
+        );
     }
 }
 
