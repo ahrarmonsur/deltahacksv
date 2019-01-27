@@ -8,8 +8,7 @@ class Login extends Component {
 			<div className="login">
 				<div className="info">
 					<h2>
-						Doctor check-ins<br/>
-						made easy
+						Doctor check-ins made easy
 					</h2>
 					<p>
 						Skip the form at the doctor’s office, and scan your QR code in seconds.

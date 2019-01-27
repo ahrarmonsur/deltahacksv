@@ -7,8 +7,7 @@ class RoleSelection extends Component {
 		return (
 			<div className="roleSelection">
 				<h2>
-					Welcome to<br/>
-					MediForm
+					Welcome to MediForm
 				</h2>
 				<div className="buttons">
 					<Button color="primary" variant="contained" size="large" href="/login">Patient Portal</Button>
