@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import RoleSelection from "./components/RoleSelection/RoleSelection";
 import UserVerification from "./components/UserVerification/UserVerification";
 import Login from "./components/Login/Login";
+import Form from "./components/Form/Form";
 import "./App.sass";
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
                             path="/userVerification"
                             component={UserVerification}
                         />
+                        <Route path="/form" component={Form} />
                     </div>
                 </div>
             </BrowserRouter>
