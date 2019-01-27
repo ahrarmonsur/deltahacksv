@@ -22,6 +22,8 @@ import formImg2 from '../../assets/illustration-3.png';
 import "./Form.sass";
 import BackButton from "../Navigation/BackButton/BackButton";
 
+import { submitPatientForm } from "../../api/api";
+
 export default class Form extends Component {
     state = {
         prevStep: 1,
@@ -129,6 +131,7 @@ export default class Form extends Component {
             }
         }));
         this.handleNextStep();
+        submitPatientForm("5c4ccb40d0dc8f0317d60eb0", this.state.data);
     };
 
     gotoStep = step => {

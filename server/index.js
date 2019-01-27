@@ -16,7 +16,7 @@ client.connect(err => {
 });
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -60,7 +60,7 @@ app.get("/api/form/:form_id", (req, res) => {
 app.post("/api/patients/:patient_id/form", (req, res) => {
     // Create/Update patients form
 
-    return_url = `http://localhost:3000/api/patients/${req.params.patient_id}`;
+    return_url = `http://localhost:5000/api/patients/${req.params.patient_id}`;
 
     payload = { ...req.body, created: new Date() };
 

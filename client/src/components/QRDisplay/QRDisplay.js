@@ -1,22 +1,54 @@
 import React, { Component } from "react";
+import "./QRDisplay.sass";
+import { Card, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
+var QRCode = require("qrcode");
 
 export default class QRDisplay extends Component {
     state = {
         image: ""
     };
 
-    handleLoadImage = url => {
-        imageData = generateQRCode();
-        this.setState({
-            image: imageData
-        });
+    createQRCode = patientID => {
+        console.log({ patientID });
+        QRCode.toDataURL(
+            patientID,
+            { scale: 32 },
+            function(err, image) {
+                console.log(image);
+                this.setState({
+                    image: image
+                });
+            }.bind(this)
+        );
     };
 
     componentDidMount() {
-        this.handleLoadImage();
+        this.createQRCode(this.props.match.params.patientID);
     }
 
     render() {
-        return <div>Hey</div>;
+        return (
+            <div className="qrdisplay">
+                <h1>Check-in</h1>
+                {this.state.image != "" && (
+                    <Card className="qrcard">
+                        <img src={this.state.image} />
+                    </Card>
+                )}
+                <footer>
+                    <Button
+                        href={`/profile/${this.props.match.params.patientID}`}
+                        color="primary"
+                        variant="contained"
+                        size="large"
+                        // onClick={this.handleNextStep}
+                    >
+                        Finish
+                    </Button>
+                </footer>
+            </div>
+        );
     }
 }
