@@ -6,7 +6,7 @@ class Login extends Component {
 	render() {
 		return (
 			<div className="login">
-				<header>
+				<div className="info">
 					<h2>
 						Doctor check-ins<br/>
 						made easy
@@ -14,11 +14,11 @@ class Login extends Component {
 					<p>
 						Skip the form at the doctor’s office, and scan your QR code in seconds.
 					</p>
-				</header>
+				</div>
 				<div className="buttons">
 					<Button color="primary" variant="contained" size="large"> Sign up with Google</Button>
 					<Button color="primary" variant="contained" size="large"> Sign up with Email</Button>
-					<p>or sign in</p>
+					<p>or log in</p>
 				</div>
 			</div>
 		);

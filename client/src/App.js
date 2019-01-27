@@ -12,10 +12,8 @@ class App extends Component {
 			<div id="App">
 				<Header title="MediForm"/>
 				<div id="content">
-					<RoleSelection/>
-					{false &&
-						<Login/>
-					}
+					{/*<RoleSelection/>*/}
+					<Login/>
 				</div>
 			</div>
 		);
