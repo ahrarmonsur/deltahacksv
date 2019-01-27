@@ -7,7 +7,10 @@ import RoleSelection from "./components/RoleSelection/RoleSelection";
 import UserVerification from "./components/UserVerification/UserVerification";
 import Login from "./components/Login/Login";
 import Form from "./components/Form/Form";
+import Profile from "./components/Profile/Profile";
+import PatientData from "./components/PatientData/PatientData";
 import QRDisplay from "./components/QRDisplay/QRDisplay";
+import QRScan from "./components/QRScan/QRScan";
 import "./App.sass";
 
 class App extends Component {
@@ -23,8 +26,17 @@ class App extends Component {
                             path="/userVerification"
                             component={UserVerification}
                         />
-                        <Route path="/qrdisplay" render={(props)=> <QRDisplay {...props} patientID="124" />} />
+                        <Route
+                            path="/qrdisplay/:patientID"
+                            component={QRDisplay}
+                        />
+                        <Route path="/qrscan" component={QRScan} />
                         <Route path="/form" component={Form} />
+                        <Route path="/profile/:patientID" component={Profile} />
+                        <Route
+                            path="/patient/:patientID"
+                            component={PatientData}
+                        />
                     </div>
                 </div>
             </BrowserRouter>
