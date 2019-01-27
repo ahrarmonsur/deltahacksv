@@ -38,7 +38,7 @@ export default class Profile extends Component {
                             {patient.first_name} {patient.last_name}
                         </h1>
                         <p>{patient.form.gender}</p>
-                        <p>{patient.dob}</p>
+                        <p>{patient.form.dob}</p>
                         <p>{patient.form.card_num}</p>
                         <p>{patient.form.address}</p>
                         <p>{patient.form.postal}</p>
