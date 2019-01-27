@@ -1,22 +1,27 @@
 import React, { Component } from "react";
 
+var QRCode = require('qrcode')
+
 export default class QRDisplay extends Component {
     state = {
         image: ""
     };
 
-    handleLoadImage = url => {
-        imageData = generateQRCode();
-        this.setState({
-            image: imageData
-        });
-    };
+    createQRCode = (patientID) => {
+        console.log({patientID})
+        QRCode.toDataURL(`http://localhost:3000/api/patients/${patientID}`, function (err, image) {
+            console.log(image);
+            this.setState({
+                image: image
+            });
+        }.bind(this))
+    }
 
     componentDidMount() {
-        this.handleLoadImage();
+        this.createQRCode(this.props.patientID);
     }
 
     render() {
-        return <div>Hey</div>;
+        return <div>{this.state.image!='' && (<img src={this.state.image}></img>)}</div>;
     }
 }
