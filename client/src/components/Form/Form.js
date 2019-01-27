@@ -7,14 +7,22 @@ import {
     Input,
     TextField,
     Button,
-    Typography
+    Typography,
+    List,
+    ListItem,
+    ListItemText,
+    IconButton,
+    ListItemSecondaryAction,
+    dense
 } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import "./Form.sass";
 import BackButton from "../Navigation/BackButton/BackButton";
 
 export default class Form extends Component {
     state = {
+        prevStep: 1,
         step: 1,
         data: {
             gender: "",
@@ -26,7 +34,10 @@ export default class Form extends Component {
             province: "",
             address: "",
             postal: "",
-            city: ""
+            city: "",
+            medications: [],
+            medication: "",
+            serious_illness: undefined
         },
         phone_numbers: 1
     };
@@ -53,13 +64,15 @@ export default class Form extends Component {
 
     handleNextStep = () => {
         this.setState(prevState => ({
+            prevStep: prevState.step,
             step: prevState.step + 1
         }));
     };
 
     handlePreviousStep = () => {
         this.setState(prevState => ({
-            step: prevState.step - 1
+            step: prevState.prevStep,
+            prevStep: prevState.step
         }));
     };
 
@@ -71,6 +84,56 @@ export default class Form extends Component {
                 };
             }
         });
+    };
+
+    handleAddMedication = () => {
+        this.setState(prevState => {
+            if (prevState.data.medication !== "") {
+                return {
+                    data: {
+                        ...prevState.data,
+                        medications: prevState.data.medications.concat([
+                            prevState.data.medication
+                        ]),
+                        medication: ""
+                    }
+                };
+            } else {
+                return;
+            }
+        });
+    };
+
+    handleRemoveMedication = rm_medication => {
+        this.setState(prevState => {
+            let filteredMeds = prevState.data.medications.filter(
+                medication => medication !== rm_medication
+            );
+            return {
+                data: {
+                    ...prevState.data,
+                    medications: filteredMeds
+                }
+            };
+        });
+    };
+
+    handleSeriousDecision = val => {
+        this.setState(prevState => ({
+            data: {
+                ...prevState.data,
+                serious_illness: val
+            }
+        }));
+        this.handleNextStep();
+    };
+
+    gotoStep = step => {
+        console.log(step);
+        this.setState(prevState => ({
+            prevStep: prevState.step,
+            step: step
+        }));
     };
 
     createPhoneInputs = () => {
@@ -102,7 +165,9 @@ export default class Form extends Component {
     render() {
         return (
             <div className="form">
-                {this.state.step === 1 && <BackButton href="/" />}
+                {this.state.step === 1 && (
+                    <BackButton href="/userVerification" />
+                )}
                 {this.state.step !== 1 && (
                     <BackButton onClick={this.handlePreviousStep} />
                 )}
@@ -110,10 +175,10 @@ export default class Form extends Component {
                 {/* *** STEP 1 *** */}
                 {this.state.step == 1 && (
                     <>
-                        <Typography variant="subheading" gutterBottom>
-                            STEP 1
-                        </Typography>
                         <div className="info">
+                            <Typography variant="subheading" gutterBottom>
+                                STEP 1
+                            </Typography>
                             <h1>
                                 Let's get your health <br /> passport set up.
                             </h1>
@@ -377,45 +442,200 @@ export default class Form extends Component {
                 {this.state.step == 6 && (
                     <>
                         <div className="info">
+                            <Typography variant="subheading" gutterBottom>
+                                STEP 2
+                            </Typography>
                             <h1>
-                                What is your health card <br /> number?
+                                Your medical <br /> information
+                            </h1>
+                        </div>
+                        <p>
+                            Doctors need background information in order to make
+                            informed medical decisions for you.
+                        </p>
+                        <p>
+                            Here are a few questions about you and your medical
+                            history.
+                        </p>
+                    </>
+                )}
+
+                {/* *** STEP 7 *** */}
+                {this.state.step == 7 && (
+                    <>
+                        <div
+                            className="info"
+                            style={{ justifyContent: "center" }}
+                        >
+                            <h1>
+                                Are you currently taking <br />
+                                any prescription <br />
+                                medication?
+                            </h1>
+                        </div>
+                        <Button
+                            color="primary"
+                            variant="contained"
+                            size="large"
+                            onClick={() => this.gotoStep(8)}
+                        >
+                            Yes
+                        </Button>
+                        <Button
+                            color="primary"
+                            variant="contained"
+                            size="large"
+                            onClick={() => this.gotoStep(9)}
+                        >
+                            No
+                        </Button>
+                    </>
+                )}
+
+                {/* *** STEP 8 ***
+                  YES TO MEDICATION */}
+                {this.state.step == 8 && (
+                    <>
+                        <div className="info">
+                            <h1>
+                                Which medication(s) are
+                                <br /> you taking right now?
                             </h1>
                         </div>
                         <form id="form_2">
-                            <div>
-                                <TextField
-                                    fullWidth={true}
-                                    id="standard-number"
-                                    label="Health Card Number"
-                                    value={this.state.data.card_num}
-                                    onChange={this.handleChangeInput(
-                                        "card_num"
+                            {this.state.data.medications !== [] && (
+                                <List dense={false}>
+                                    {this.state.data.medications.map(
+                                        medication => {
+                                            return (
+                                                <ListItem key={medication}>
+                                                    <ListItemText
+                                                        primary={medication}
+                                                    />
+                                                    <ListItemSecondaryAction
+                                                        style={{ top: "25%" }}
+                                                    >
+                                                        <IconButton
+                                                            aria-label="Delete"
+                                                            onClick={() =>
+                                                                this.handleRemoveMedication(
+                                                                    medication
+                                                                )
+                                                            }
+                                                        >
+                                                            <DeleteIcon />
+                                                        </IconButton>
+                                                    </ListItemSecondaryAction>
+                                                </ListItem>
+                                            );
+                                        }
                                     )}
-                                    type="text"
-                                    name={`card_num`}
-                                    // className={classes.textField}
-                                    InputLabelProps={{
-                                        shrink: true
-                                    }}
-                                    margin="normal"
-                                />
-                            </div>
-                            {/* <Button color="default">Need help?</Button> */}
+                                </List>
+                            )}
+                            <TextField
+                                fullWidth={true}
+                                id="medication"
+                                label={
+                                    this.state.data.medications != []
+                                        ? "Prescription Medication"
+                                        : null
+                                }
+                                value={this.state.data.medication}
+                                onChange={this.handleChangeInput("medication")}
+                                type="text"
+                                name={`medication`}
+                                // className={classes.textField}
+                                InputLabelProps={{
+                                    shrink: true
+                                }}
+                                margin="normal"
+                            />
+                            <Button
+                                color="default"
+                                onClick={this.handleAddMedication}
+                            >
+                                + Add Another
+                            </Button>
                         </form>
                     </>
                 )}
 
+                {/* *** STEP 9 *** */}
+                {this.state.step == 9 && (
+                    <>
+                        <div
+                            className="info"
+                            style={{ justifyContent: "center" }}
+                        >
+                            <h1>
+                                Do you have a history of <br /> serious
+                                illnesses?
+                            </h1>
+                            <p>
+                                Including heart disease, diabetes, HIV/AIDS,
+                                etc.
+                            </p>
+                        </div>
+                        <Button
+                            color="primary"
+                            variant="contained"
+                            size="large"
+                            onClick={() => this.handleSeriousDecision(true)}
+                        >
+                            Yes
+                        </Button>
+                        <Button
+                            color="primary"
+                            variant="contained"
+                            size="large"
+                            onClick={() => this.handleSeriousDecision(false)}
+                        >
+                            No
+                        </Button>
+                    </>
+                )}
+
+                {/* *** STEP 10 *** */}
+                {this.state.step == 10 && (
+                    <>
+                        <div className="info">
+                            <h1>
+                                Your health passport is <br /> complete!
+                            </h1>
+                        </div>
+                        <p>
+                            Thank you for filling out all of the entries. You
+                            are now ready to check into clinics with a quick
+                            scan!
+                        </p>
+                    </>
+                )}
+
                 <footer>
-                    <Button
-                        color="primary"
-                        variant="contained"
-                        size="large"
-                        onClick={this.handleNextStep}
-                    >
-                        {this.state.step == 1 || this.state.step == 6
-                            ? "Continue"
-                            : "Next"}
-                    </Button>
+                    {this.state.step !== 7 &&
+                        this.state.step !== 9 &&
+                        this.state.step !== 10 && (
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                size="large"
+                                onClick={this.handleNextStep}
+                            >
+                                {this.state.step == 1 || this.state.step == 6
+                                    ? "Continue"
+                                    : "Next"}
+                            </Button>
+                        )}
+                    {this.state.step === 10 && (
+                        <Button
+                            color="primary"
+                            variant="contained"
+                            size="large"
+                            // onClick={this.handleNextStep}
+                        >
+                            View my profile
+                        </Button>
+                    )}
                 </footer>
             </div>
         );
