@@ -2,7 +2,9 @@ Mediform
 ========
 
 ### Product Outline
-An application platform which allows patient to digitize important and frequently-used health information and share it effortlessly with their healthcare provider. Through this product, we aim to eliminate mistakes during intake, reduce inefficiencies in the caregiver's process, and deliver faster healthcare to those in need.
+An application platform which allows patients to digitize important and frequently-used health information and share it effortlessly with their healthcare provider. Through this product, we aim to eliminate mistakes during intake, reduce inefficiencies in the caregiver's process, and deliver faster healthcare to those in need.
+
+Mediform was a **finalist** (Top 5 of over 100 projects) at *DeltaHacks V*, Jan 2019.
 
 ### The Need
 - Enables patients to keep one source of health information up-to-date
